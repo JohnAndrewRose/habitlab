@@ -19,9 +19,9 @@ polymer_ext {
 
   timeSpentButtonAction: ->
     a <~ get_seconds_spent_on_all_domains_days_before_today(1)
-    sorted = bySortedValue(a)  
+    sorted = bySortedValue(a)
     #accounts for visiting less than 5 websites
-    if sorted.length < 5 
+    if sorted.length < 5
       for i from sorted.length to 4
         sorted.push(["", 0])
 
@@ -30,7 +30,7 @@ polymer_ext {
       myButton.innerText = "View Today's Data"
       myButton.value = "clicked"
       this.push('donutdata.datasets', {
-        data: [Math.round(10*(sorted[0][1]/60))/10, Math.round(10*(sorted[1][1]/60))/10, Math.round(10*(sorted[2][1]/60))/10, Math.round(10*(sorted[3][1]/60))/10, Math.round(10*(sorted[4][1]/60))/10],        
+        data: [Math.round(10*(sorted[0][1]/60))/10, Math.round(10*(sorted[1][1]/60))/10, Math.round(10*(sorted[2][1]/60))/10, Math.round(10*(sorted[3][1]/60))/10, Math.round(10*(sorted[4][1]/60))/10],
         backgroundColor: [
             "rgba(65,131,215,0.7)",
             "rgba(27,188,155,0.7)",
@@ -43,8 +43,8 @@ polymer_ext {
             "rgba(27,188,155,1)",
             "rgba(244,208,63,1)",
             "rgba(230,126,34,1)",
-            "rgba(239,72,54,1)"          
-        ]              
+            "rgba(239,72,54,1)"
+        ]
       })
     else if (myButton.value === "clicked")
       myButton.innerText = "Compare with Previous Day"
@@ -53,7 +53,7 @@ polymer_ext {
 
   ready: ->>
     self = this
-    
+
     #MARK: Donut Graph
     a = await get_seconds_spent_on_all_domains_today()
 
@@ -63,7 +63,7 @@ polymer_ext {
       this.graph_has_data = false
     else
       this.graph_has_data = true
-    if sorted.length < 5 
+    if sorted.length < 5
       for i from sorted.length to 4
         sorted.push(["", 0])
     length = sorted.length
@@ -71,18 +71,18 @@ polymer_ext {
     #  console.log "Key: #{sorted[i][0]} Value: #{sorted[i][1]}"
     self.donutdata = {
       labels: [
-          sorted[0][0],
-          sorted[1][0],
-          sorted[2][0],
-          sorted[3][0],
-          sorted[4][0]  
+          'test1',
+          'test2',
+          'test3',
+          'test4',
+          'test5'
       ],
       datasets: [
       {
-          data: [Math.round(10*(sorted[0][1]/60))/10, 
+          data: [Math.round(10*(sorted[0][1]/60))/10,
                 Math.round(10*(sorted[1][1]/60))/10,
-                Math.round(10*(sorted[2][1]/60))/10, 
-                Math.round(10*(sorted[3][1]/60))/10, 
+                Math.round(10*(sorted[2][1]/60))/10,
+                Math.round(10*(sorted[3][1]/60))/10,
                 Math.round(10*(sorted[4][1]/60))/10
           ],
           backgroundColor: [
@@ -110,7 +110,7 @@ polymer_ext {
   ]
 }
 
-#Sorts array in descending order 
+#Sorts array in descending order
 #http://stackoverflow.com/questions/5199901/how-to-sort-an-associative-array-by-its-values-in-javascript
 bySortedValue = (obj) ->
   tuples = []
